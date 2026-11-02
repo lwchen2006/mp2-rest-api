@@ -1,0 +1,3 @@
+# MP2 REST API
+
+A FastAPI application that wraps the MP1 data pipeline. A CSV can be uploaded with `POST /upload`, which stores it in memory and returns its ID and metadata. `GET /datasets/{id}?limit=N` returns up to N rows along with the total row count, and `POST /datasets/{id}/process` validates and cleans the stored data (duplicates, missing values, outliers) using a JSON configuration, replacing the stored dataset and returning a cleaning report. `GET /health` reports status and version. Every request is logged by middleware with a request ID, returned in the `X-Request-ID` header. Run with `python -m uvicorn main:app --reload` and test with `python -m pytest tests -v`.
